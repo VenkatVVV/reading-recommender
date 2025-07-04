@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommender-api-deployment
+  labels:
+    app: recommender-api
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: recommender-api
+  template:
+    metadata:
+      labels:
+        app: recommender-api
+    spec:
+      containers:
+      - name: recommender-api-container
+        image: gcr.io/reading-recommender-vvv/recommender-api:v1
+        ports:
+        - containerPort: 8000 
+        resources:
+          requests: 
+            cpu: "200m" 
+            memory: "512Mi" 
+          limits: 
+            cpu: "500m" 
+            memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommender-api-service
+spec:
+  selector:
+    app: recommender-api 
+  ports:
+    - protocol: TCP
+      port: 80 
+      targetPort: 8000 
+  type: LoadBalancer 
