@@ -1,7 +1,5 @@
 # 📚 Reading Recommender System
 
-A comprehensive book recommendation system that combines collaborative filtering with semantic search and sentiment analysis to provide personalized reading recommendations.
-
 ## 🏗️ Architecture Overview
 
 This project implements a multi-faceted recommendation system with the following components:
